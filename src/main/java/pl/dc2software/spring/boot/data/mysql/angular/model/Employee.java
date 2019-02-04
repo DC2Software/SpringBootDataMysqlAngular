@@ -8,13 +8,15 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @DiscriminatorColumn(
-        discriminatorType = DiscriminatorType.STRING,
-        length = 3
+        name = "role",
+        discriminatorType = DiscriminatorType.STRING
 )
+@DiscriminatorValue("employee")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Getter
 @Setter
 public class Employee {
@@ -32,8 +34,7 @@ public class Employee {
     private Integer age;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date hiringDate;
+    private LocalDate hiringDate;
 
     @Column(nullable = false)
     @Email

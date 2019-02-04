@@ -1,17 +1,19 @@
-package pl.dc2software.spring.boot.data.mysql.angular.dto;
+package pl.dc2software.spring.boot.data.mysql.angular.dto.employee;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
+import pl.dc2software.spring.boot.data.mysql.angular.util.LocalDateDeserializer;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -20,7 +22,10 @@ public class EmployeeDto {
 
     private Long id;
 
-    @NotNull
+    @NotEmpty
+    private String role;
+
+    @NotEmpty
     @Length(min = 1, max = 30)
     private String name;
 
@@ -29,10 +34,11 @@ public class EmployeeDto {
     private Integer age;
 
     @NotNull
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date hiringDate;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate hiringDate;
 
-    @NotNull
+    @NotEmpty
     @Email
     private String email;
 
@@ -42,7 +48,7 @@ public class EmployeeDto {
     @NotNull
     private Float salary;
 
-    @NotNull
+    @NotEmpty
     @Length(max = 300)
     private String description;
 

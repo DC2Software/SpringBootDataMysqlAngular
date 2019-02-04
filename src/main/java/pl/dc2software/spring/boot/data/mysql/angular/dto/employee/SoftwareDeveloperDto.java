@@ -1,4 +1,4 @@
-package pl.dc2software.spring.boot.data.mysql.angular.dto;
+package pl.dc2software.spring.boot.data.mysql.angular.dto.employee;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 public class SoftwareDeveloperDto extends EmployeeDto {
 
     @NotEmpty

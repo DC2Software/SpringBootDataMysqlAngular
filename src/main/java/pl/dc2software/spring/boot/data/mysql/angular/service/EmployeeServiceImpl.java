@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.dc2software.spring.boot.data.mysql.angular.dao.EmployeeRepository;
-import pl.dc2software.spring.boot.data.mysql.angular.dto.EmployeeDto;
+import pl.dc2software.spring.boot.data.mysql.angular.dto.employee.EmployeeDto;
 import pl.dc2software.spring.boot.data.mysql.angular.exception.ServiceException;
 import pl.dc2software.spring.boot.data.mysql.angular.model.Employee;
 
@@ -27,8 +27,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void delete(final EmployeeDto employeeDto) {
-        employeeRepository.delete(modelMapper.map(employeeDto, Employee.class));
+    public void delete(final Long employeeId) throws ServiceException {
+        employeeRepository.delete(employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new ServiceException("No employee with ID: " + employeeId + " found.")));
     }
 
     @Override
@@ -39,6 +40,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return modelMapper.map(employeeRepository.findById(id)
                 .orElseThrow(() -> new ServiceException("No employee with ID: " + id + " found.")), EmployeeDto.class);
+    }
+
+    @Override
+    public List<EmployeeDto> findByLocation(Long locationId) throws ServiceException {
+        return employeeRepository.findByLocation(locationId).stream()
+                .map(employee -> modelMapper.map(employee, EmployeeDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override

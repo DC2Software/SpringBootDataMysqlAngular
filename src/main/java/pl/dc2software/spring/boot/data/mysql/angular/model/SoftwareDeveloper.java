@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@DiscriminatorValue("SWD")
+@DiscriminatorValue("software_developer")
 @Getter
 @Setter
 public class SoftwareDeveloper extends Employee {

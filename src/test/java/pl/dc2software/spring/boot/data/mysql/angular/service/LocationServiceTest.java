@@ -10,7 +10,7 @@ import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.dc2software.spring.boot.data.mysql.angular.dao.LocationRepository;
-import pl.dc2software.spring.boot.data.mysql.angular.dto.LocationDto;
+import pl.dc2software.spring.boot.data.mysql.angular.dto.location.LocationDto;
 import pl.dc2software.spring.boot.data.mysql.angular.model.Location;
 
 import static org.mockito.ArgumentMatchers.any;

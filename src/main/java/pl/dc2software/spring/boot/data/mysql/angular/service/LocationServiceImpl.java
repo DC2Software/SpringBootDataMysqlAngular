@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.dc2software.spring.boot.data.mysql.angular.dao.LocationRepository;
-import pl.dc2software.spring.boot.data.mysql.angular.dto.LocationDto;
+import pl.dc2software.spring.boot.data.mysql.angular.dto.location.LocationDto;
 import pl.dc2software.spring.boot.data.mysql.angular.exception.ServiceException;
 import pl.dc2software.spring.boot.data.mysql.angular.model.Location;
 
@@ -28,8 +28,9 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
-    public void delete(LocationDto locationDto) {
-        locationRepository.delete(modelMapper.map(locationDto, Location.class));
+    public void delete(Long locationId) throws ServiceException {
+        locationRepository.delete(locationRepository.findById(locationId)
+                .orElseThrow(() -> new ServiceException("No location with ID: " + locationId + " found.")));
     }
 
     @Override

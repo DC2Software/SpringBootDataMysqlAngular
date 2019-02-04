@@ -10,7 +10,7 @@ import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.dc2software.spring.boot.data.mysql.angular.dao.EmployeeRepository;
-import pl.dc2software.spring.boot.data.mysql.angular.dto.EmployeeDto;
+import pl.dc2software.spring.boot.data.mysql.angular.dto.employee.EmployeeDto;
 import pl.dc2software.spring.boot.data.mysql.angular.exception.ServiceException;
 import pl.dc2software.spring.boot.data.mysql.angular.model.Employee;
 

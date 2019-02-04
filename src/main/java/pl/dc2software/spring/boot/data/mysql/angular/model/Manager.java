@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import java.util.Set;
 
 @Entity
-@DiscriminatorValue("MNG")
+@DiscriminatorValue("manager")
 @Getter
 @Setter
 public class Manager extends Employee {
